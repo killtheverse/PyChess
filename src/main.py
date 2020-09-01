@@ -64,6 +64,7 @@ class MainWindow(QWidget):
 
         self.engineButton.clicked.connect(self.find_move)
         self.moveButton.clicked.connect(self.make_move)
+        self.undoButton.clicked.connect(self.undo_move)
 
     @Slot(QWidget)
     def mousePressEvent(self, event):
@@ -122,6 +123,8 @@ class MainWindow(QWidget):
         """
         Undo the last move played on the board
         """
+        self.board.pop()
+        self.drawBoard()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
